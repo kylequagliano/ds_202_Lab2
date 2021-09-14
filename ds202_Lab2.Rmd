@@ -1,0 +1,49 @@
+---
+title: "ds202_Lab2"
+author: "Kyle Quagliano"
+date: "9/13/2021"
+output: html_document
+---
+
+```{r}
+devtools::install_github('xdaiISU/classdata')
+library(classdata)
+data(choco)
+str(choco)
+
+hist(choco$CocoaPercent)
+boxplot(choco$CocoaPercent)
+
+"CocoaPercent has a middle-skew distribution with few outliers in the 100 cocoa percent."
+x<- table(choco$Rating, choco$CountryBeanOrigin)
+barplot(x, las=3,space=5)
+"chocolate made in south america is more likely to have a higher rating."
+
+y <- table(choco$Rating, choco$CocoaPercent)
+barplot(y)
+summary(choco)
+str(choco$CocoaPercent)
+"Yes, ratings do depend on the cocoa percent. When cocoa percent is between 70-75% it is more likely to receive a higher rating."
+
+origin <- table(choco$Characteristics1, choco$SpecificBeanOrigin)
+summary(origin)
+"South American cocoa beans are more likely to be richer"
+"Beans from places like the South America are better because they have higher ratings due to the findings in the barplot found in the previous questions."
+
+
+"1. The first analysis I would like to see is if the rating of cocoa beans are higher now then they were in the past."
+
+now <- table(choco$Rating, choco$ReviewDate)
+barplot(now)
+cor(now)
+"No the rating of the cocoa beans are not higher/ there is no obvious correlation between rating and review date"
+
+"2. The second analysis I would like to see is if the cocoa percent depends on the country bean origin."
+
+dep <- table(choco$CocoaPercent, choco$CountryBeanOrigin)
+cor(dep)
+barplot(dep, las=3)
+
+"There is also no real correclation between country bean origin and cocoa percent most countries have an equal amount of each category respectively"
+```
+
